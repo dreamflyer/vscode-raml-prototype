@@ -1,0 +1,55 @@
+{
+	"name": "language-client-example",
+	"description": "VSCode part of a language server",
+	"author": "Microsoft Corporation",
+	"license": "MIT",
+	"version": "0.0.1",
+	"publisher": "dreamflyer",
+	"engines": {
+		"vscode": "^0.10.10"
+	},
+	"categories": [
+		"Languages", "Linters", "Themes"
+	],
+	"activationEvents": [
+		"*"
+	],
+	"main": "./out/src/extension",
+	"contributes": {
+		"configuration": {
+			"type": "object",
+			"title": "Example configuration",
+			"properties": {
+				"languageServerExample.maxNumberOfProblems": {
+					"type": "number",
+					"default": 100,
+					"description": "Controls the maximum number of problems produced by the server."
+				}
+			}
+		},
+		"languages": [{
+			"id": "raml",
+			"aliases": ["RAML", "raml"],
+			"extensions": [".raml"],
+			"configuration": "./raml.configuration.json"
+		}],
+		"grammars": [{
+			"language": "raml",
+			"scopeName": "source.raml",
+			"path": "./syntaxes/raml.json"
+		}]
+	},
+	"scripts": {
+		"vscode:prepublish": "node ./node_modules/vscode/bin/compile",
+		"compile": "node ./node_modules/vscode/bin/compile -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install"
+
+	},
+	"devDependencies": {
+		"typescript": "^1.8.9",
+		"vscode": "^0.11.0"
+	},
+	"dependencies": {
+		"vscode-languageclient": "^2.2.1"
+	}
+}
